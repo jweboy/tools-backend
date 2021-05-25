@@ -9,6 +9,7 @@ const config = defineConfig({
   cssModulesTypescriptLoader: {}, // 自动生成 *.less.d.ts 文件
   dva: false,
   define: setEnvKeys(), // 环境变量
+  publicPath: '/tool-application/',
   dynamicImport: {
     loading: '@/components/Loading',
   }, // 页面模块按需加载

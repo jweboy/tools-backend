@@ -2,8 +2,8 @@
 // Please do not change this file!
 interface CssExports {
   'stu-system-logo': string;
-  thumb: string;
-  title: string;
+  'thumb': string;
+  'title': string;
 }
 export const cssExports: CssExports;
 export default cssExports;
