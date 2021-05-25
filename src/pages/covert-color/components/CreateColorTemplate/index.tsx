@@ -1,4 +1,5 @@
-import { Button, Card, Form, Input, Space } from 'antd';
+import { CopyTwoTone } from '@ant-design/icons';
+import { Button, Card, Form, Input, message, Space } from 'antd';
 import React, { FC, Fragment, useCallback, useState } from 'react';
 import { IColor } from '../../typings';
 
@@ -6,7 +7,7 @@ const CreateColorTemplate: FC<{
   target: 'hex' | 'rgb';
   title?: string;
 }> = (props) => {
-  const [Color, setColor] = useState('');
+  const [color, setColor] = useState('');
 
   const covertRgbToHex = (color: IColor['color']) => {
     // 如果是rgb颜色表示
@@ -74,6 +75,11 @@ const CreateColorTemplate: FC<{
     setColor(result!);
   };
 
+  const onCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(color);
+    message.success('复制成功');
+  }, [color]);
+
   return (
     <Card title={props.title}>
       <Space direction="vertical">
@@ -91,7 +97,10 @@ const CreateColorTemplate: FC<{
             </Button>
           </Form.Item>
         </Form>
-        <div>转换结果：{Color}</div>
+        <div>
+          <span>转换结果：{color}</span>
+          {!!color && <CopyTwoTone onClick={onCopy} />}
+        </div>
       </Space>
     </Card>
   );
